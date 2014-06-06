@@ -1,17 +1,17 @@
 # Copyright 2013 Lars Buitinck
 # encoding: utf-8
 
-from __future__ import division, print_function
+from __future__ import division, print_function, absolute_import
 
 import sys
 
 import numpy as np
 from scipy.sparse import csc_matrix
+from sklearn.externals import six
 
 from .base import BaseSequenceClassifier
 from ._utils import (atleast2d_or_csr, check_random_state, count_trans,
                      make_trans_matrix, safe_add, safe_sparse_dot)
-
 
 class StructuredPerceptron(BaseSequenceClassifier):
     """Structured perceptron for sequence classification.
@@ -47,7 +47,7 @@ class StructuredPerceptron(BaseSequenceClassifier):
     References
     ----------
     M. Collins (2002). Discriminative training methods for hidden Markov
-    models: Theory and experiments with perceptron algorithm. EMNLP.
+    models: Theory and experiments with perceptron algorithms. EMNLP.
 
     Hal Daumé III (2006). Practical Structured Learning Techniques for
     Natural Language Processing. Ph.D. thesis, U. Southern California.
@@ -122,7 +122,7 @@ class StructuredPerceptron(BaseSequenceClassifier):
         avg_count = 1.
         lr_exponent = self.lr_exponent
 
-        for it in xrange(1, self.max_iter + 1):
+        for it in six.moves.xrange(1, self.max_iter + 1):
             lr = 1. / (it ** lr_exponent)
 
             if self.verbose:

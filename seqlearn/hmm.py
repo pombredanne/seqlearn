@@ -1,3 +1,5 @@
+"""Hidden Markov models (HMMs) with supervised training."""
+
 import numpy as np
 
 from .base import BaseSequenceClassifier
@@ -11,6 +13,8 @@ class MultinomialHMM(BaseSequenceClassifier):
     ----------
     decode : string, optional
         Decoding algorithm, either "bestfirst" or "viterbi" (default).
+        Best-first decoding is also called posterior decoding in the HMM
+        literature.
 
     alpha : float
         Lidstone (additive) smoothing parameter.
